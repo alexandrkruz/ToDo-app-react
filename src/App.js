@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import TaskForm from './components/TaskForm/TaskForm'
 import './App.css';
 
 function App() {
+  const [tasks, setTasks] = useState([]);
+
+  const handleTaskCreate = (taskName) => {
+    const newTask = { name: taskName, status: 'запланировано' };
+    setTasks([...tasks, newTask]);
+  };
+
+  const handleStatusChange = (task, newStatus) => {
+    const updatedTasks = tasks.map((t) =>
+      t === task ? { ...t, status: newStatus } : t
+    );
+    setTasks(updatedTasks);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Управление задачами</h1>
+      <TaskForm onTaskCreate={handleTaskCreate} />
     </div>
   );
 }
 
 export default App;
+
+
+
+
+
+
+
