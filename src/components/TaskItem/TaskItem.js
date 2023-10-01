@@ -1,5 +1,5 @@
 import React from 'react';
-import StatusChangeButton from './StatusChangeButton';
+import StatusChangeButton from './StatusChangeButton/StatusChangeButton';
 
 function TaskItem({ task, onStatusChange }) {
   return (
