@@ -1,5 +1,5 @@
 import React from 'react';
-import TaskItem from '';
+import TaskItem from '../TaskItem/TaskItem';
 
 function TaskList({ tasks, onStatusChange }) {
   return (

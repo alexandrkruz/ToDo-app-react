@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CreateTaskButton from './CreateTaskButton/CreateTaskButton';
+import { Button } from '../Button';
 
 function TaskForm({ onTaskCreate }) {
   const [taskName, setTaskName] = useState('');
@@ -23,7 +23,7 @@ function TaskForm({ onTaskCreate }) {
         value={taskName}
         onChange={handleTaskNameChange}
       />
-      <CreateTaskButton onClick={handleTaskCreate} />
+      <Button onClick={handleTaskCreate} className='form-btn' >Создать задачу</Button>
     </div>
   );
 }
