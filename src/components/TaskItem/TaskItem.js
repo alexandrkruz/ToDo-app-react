@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, ButtonSave } from '../Button';
+import { Button, ButtonSave } from '../Button/index';
 
 import ImageProgress from '../../assets/icons/double.svg';
 import ImageCompleted from '../../assets/icons/cancel.svg';
