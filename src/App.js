@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TaskForm from './components/TaskForm/TaskForm';
 import TaskList from './components/TaskList';
 import SearchTask from './components/SearchTask/SearchTask';
-import { FilterTasks } from './components/FilterTasks';
+import FilterTasks from './components/FilterTasks/index';
 import './App.css';
 
 function App() {
