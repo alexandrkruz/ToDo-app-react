@@ -41,21 +41,27 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Управление задачами</h1>
-      <TaskForm onTaskCreate={handleTaskCreate} />
-      <SearchTask onSearchChange={handleSearchChange} />
-      <FilterTasks onFilterChange={handleFilterChange} />
-      <TaskList
-        tasks={filteredTasks}
-        onStatusChange={handleStatusChange}
-        onDeleteTask={handleDeleteTask}
-      />
+      <div className="TaskForm">
+        <h1>Создание задачи</h1>
+        <TaskForm onTaskCreate={handleTaskCreate} />
+      </div>
+      <div className="TaskList">
+        <h1>Управление задачами</h1>
+        <div className="SearchAndFilter">
+          <SearchTask onSearchChange={handleSearchChange} />
+          <FilterTasks onFilterChange={handleFilterChange} />
+        </div>
+        <TaskList
+          tasks={filteredTasks}
+          onStatusChange={handleStatusChange}
+          onDeleteTask={handleDeleteTask}
+        />
+      </div>
     </div>
   );
 }
 
 export default App;
-
 
 
 
