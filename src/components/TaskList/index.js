@@ -1,14 +1,20 @@
 import React from 'react';
 import TaskItem from '../TaskItem/TaskItem';
 
-function TaskList({ tasks, onStatusChange }) {
+const TaskList = ({ tasks, onStatusChange, onDeleteTask, renderActions }) => {
   return (
-    <ul>
-      {tasks.map((task, index) => (
-        <TaskItem key={index} task={task} onStatusChange={onStatusChange} />
+    <div>
+      {tasks.map((task) => (
+        <TaskItem
+          key={task.id}
+          task={task}
+          onStatusChange={onStatusChange}
+          onDeleteTask={onDeleteTask}
+          renderActions={renderActions} // Передаем renderActions в TaskItem
+        />
       ))}
-    </ul>
+    </div>
   );
-}
+};
 
 export default TaskList;

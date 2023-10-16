@@ -3,6 +3,7 @@ import TaskForm from './components/TaskForm/TaskForm';
 import TaskList from './components/TaskList';
 import SearchTask from './components/SearchTask/SearchTask';
 import { FilterTasks } from './components/FilterTasks';
+import RenameTaskButton from './components/RenameTaskButton/RenameTaskButton';
 import './App.css';
 
 function App() {
@@ -35,6 +36,17 @@ function App() {
     setFilterText(text);
   };
 
+  const handleRenameTask = (task, newName) => {
+    const updatedTasks = tasks.map((t) =>
+      t === task ? { ...t, name: newName } : t
+    );
+    setTasks(updatedTasks);
+  };
+
+  const renderTaskActions = (task) => (
+    <RenameTaskButton key={task.id} task={task} onRenameTask={handleRenameTask} />
+  );
+
   const filteredTasks = tasks
     .filter((task) => task.name.toLowerCase().includes(searchText.toLowerCase()))
     .filter((task) => task.name.toLowerCase().includes(filterText.toLowerCase()));
@@ -49,16 +61,10 @@ function App() {
         tasks={filteredTasks}
         onStatusChange={handleStatusChange}
         onDeleteTask={handleDeleteTask}
+        renderActions={renderTaskActions}
       />
     </div>
   );
 }
 
 export default App;
-
-
-
-
-
-
-

@@ -1,35 +1,56 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, ButtonSave } from '../Button/index';
+import RenameTaskButton from '../RenameTaskButton/RenameTaskButton';
 
 import ImageProgress from '../../assets/icons/double.svg';
 import ImageCompleted from '../../assets/icons/cancel.svg';
 import ImagePending from '../../assets/icons/favourite.svg';
 
-function TaskItem({ task, onStatusChange }) {
+const statusImg = {
+  progress: ImageProgress,
+  completed: ImageCompleted,
+  pending: ImagePending,
+};
 
-  useEffect(() => {
-    console.log('1231212')
+function TaskItem({ task, onStatusChange, onDeleteTask, renderActions }) {
+  const [renaming, setRenaming] = useState(false);
 
-    return () => {
-      console.log('333333')
-    };
-  });
+  const startRename = () => {
+    setRenaming(true);
+  };
 
   const changeStatus = (status) => {
-    onStatusChange(task, status)
-  }
-
-  const statusImg = {
-    progress: ImageProgress,
-    completed: ImageCompleted,
-    pending: ImagePending,
-  }
+    onStatusChange(task, status);
+  };
 
   return (
-    <li >
+    <li>
       <img src={statusImg[task.status]} alt={task.status} width={15} /> - {task.name}
-      <Button status="progress" onClick={changeStatus} className='task-btn-progres' >В процессе</Button>
-      <ButtonSave status="completed" onClick={changeStatus} className='task-btn-complete' >завершено</ButtonSave>
+      {renaming ? (
+        <div>
+          {renderActions(task)}
+        </div>
+      ) : (
+        <>
+          <Button
+            status="progress"
+            onClick={() => changeStatus('progress')}
+            className='task-btn-progres'
+          >
+            В процессе
+          </Button>
+          <ButtonSave
+            status="completed"
+            onClick={() => changeStatus('completed')}
+            className='task-btn-complete'
+          >
+            завершено
+          </ButtonSave>
+          <Button status="rename" onClick={startRename} className='task-btn-rename'>
+            Rename
+          </Button>
+        </>
+      )}
     </li>
   );
 }
