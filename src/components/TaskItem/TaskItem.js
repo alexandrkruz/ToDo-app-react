@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button, ButtonSave } from '../Button/index';
-import RenameTaskButton from '../RenameTaskButton/RenameTaskButton';
 
 import ImageProgress from '../../assets/icons/double.svg';
 import ImageCompleted from '../../assets/icons/cancel.svg';
@@ -44,10 +43,10 @@ function TaskItem({ task, onStatusChange, onDeleteTask, renderActions }) {
             onClick={() => changeStatus('completed')}
             className='task-btn-complete'
           >
-            завершено
+            Завершено
           </ButtonSave>
           <Button status="rename" onClick={startRename} className='task-btn-rename'>
-            Rename
+            Изменить 
           </Button>
         </>
       )}

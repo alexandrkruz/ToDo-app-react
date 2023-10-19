@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import TaskForm from './components/TaskForm/TaskForm';
 import TaskList from './components/TaskList';
 import SearchTask from './components/SearchTask/SearchTask';
-import { FilterTasks } from './components/FilterTasks';
 import RenameTaskButton from './components/RenameTaskButton/RenameTaskButton';
 import './App.css';
 
@@ -12,7 +11,7 @@ function App() {
   const [filterText, setFilterText] = useState('');
 
   const handleTaskCreate = (taskName) => {
-    const newTask = { name: taskName, status: 'запланировано' };
+    const newTask = { name: taskName, status: 'progress' };
     setTasks([...tasks, newTask]);
   };
 
@@ -56,7 +55,6 @@ function App() {
       <h1>Управление задачами</h1>
       <TaskForm onTaskCreate={handleTaskCreate} />
       <SearchTask onSearchChange={handleSearchChange} />
-      <FilterTasks onFilterChange={handleFilterChange} />
       <TaskList
         tasks={filteredTasks}
         onStatusChange={handleStatusChange}
@@ -68,3 +66,4 @@ function App() {
 }
 
 export default App;
+
