@@ -18,6 +18,7 @@ function TaskForm({ onTaskCreate }) {
   return (
     <div>
       <input
+      className="task_name"
         type="text"
         placeholder="Введите название задачи"
         value={taskName}
