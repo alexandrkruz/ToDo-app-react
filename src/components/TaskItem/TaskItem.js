@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, ButtonSave } from '../Button/index';
+import DeleteTaskButton from '../DeleteTaskButton/DeleteTaskButton';
 
 import ImageProgress from '../../assets/icons/double.svg';
 import ImageCompleted from '../../assets/icons/cancel.svg';
@@ -16,6 +17,10 @@ function TaskItem({ task, onStatusChange, onDeleteTask, renderActions }) {
 
   const startRename = () => {
     setRenaming(true);
+  };
+
+  const handleDeleteTask = () => {
+    onDeleteTask(task);
   };
 
   const changeStatus = (status) => {
@@ -48,6 +53,7 @@ function TaskItem({ task, onStatusChange, onDeleteTask, renderActions }) {
           <Button status="rename" onClick={startRename} className='task-btn-rename'>
             Изменить 
           </Button>
+          <DeleteTaskButton onClick={handleDeleteTask} className='task-btn-delete' />
         </>
       )}
     </li>
