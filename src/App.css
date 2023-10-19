@@ -1,39 +1,72 @@
-.App {
-  text-align: center;
-
+body {
+  background-color: #baeaf7;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  width: 1250px;
+  padding: 0 15px;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.options_title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 40px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.list_title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 40px;
 }
+
+.options {
+  background-color: aqua;
+  width: 50%;
+  text-align: center;
+  border-radius: 40px;
+  margin-right: 10px;
+}
+
+.task_list {
+  background-color: rgb(103, 251, 137);
+  width: 50%;
+  border-radius: 40px;
+  text-align: center;
+}
+
+Button, ButtonSave {
+  border-radius: 50px;
+  margin-left: 10px;
+  border: none;
+  background-color: rgb(85, 85, 254);
+  color: #fff;
+  cursor: pointer;
+  height: 40px;
+}
+
+.task_name {
+  height: 30px;
+  border-radius: 50px;
+  border: 3px solid rgb(85, 85, 254);
+  background-color: #dafffd;
+}
+
+.search {
+  margin-top: 20px;
+}
+
+.task_name::placeholder {
+  text-align: center;
+  color: #3c00ff;
+}
+
+li {
+  list-style: none;
+}
+
+
+
+
+
