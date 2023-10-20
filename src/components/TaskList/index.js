@@ -1,7 +1,23 @@
 import React from 'react';
 import TaskItem from '../TaskItem/TaskItem';
 
-const TaskList = ({ tasks, onStatusChange, onDeleteTask, renderActions }) => {
+const TaskList = ({ tasks, onStatusChange, onDeleteTask, updateTasks }) => {
+
+  const onTaskChange = (newName, id) => {
+
+    const updatedTasks = tasks.map(task => {
+        if(id === task.id) {
+          return {
+            ...task,
+            name: newName
+          }
+        }
+        return task;
+    })
+
+    updateTasks(updatedTasks);
+  }
+
   return (
     <div>
       {tasks.map((task) => (
@@ -10,7 +26,7 @@ const TaskList = ({ tasks, onStatusChange, onDeleteTask, renderActions }) => {
           task={task}
           onStatusChange={onStatusChange}
           onDeleteTask={onDeleteTask}
-          renderActions={renderActions} // Передаем renderActions в TaskItem
+          onTaskChange={onTaskChange}
         />
       ))}
     </div>

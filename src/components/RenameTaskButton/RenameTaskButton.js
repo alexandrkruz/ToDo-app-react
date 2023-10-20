@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ButtonSave } from '../Button/index';
+import { Button } from '../Button/index';
 
 function RenameTaskButton({ task, onRenameTask }) {
   const [newName, setNewName] = useState(task.name);
@@ -9,13 +9,13 @@ function RenameTaskButton({ task, onRenameTask }) {
   };
 
   const handleSaveClick = () => {
-    onRenameTask(task, newName);
+    onRenameTask(newName, task.id);
   };
 
   return (
     <div>
       <input type="text" value={newName} onChange={handleNameChange} />
-      <ButtonSave onClick={handleSaveClick}>Save</ButtonSave>
+      <Button onClick={handleSaveClick}>Save</Button>
     </div>
   );
 }

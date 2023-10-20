@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Button, ButtonSave } from '../Button/index';
-import DeleteTaskButton from '../DeleteTaskButton/DeleteTaskButton';
+import { Button } from '../Button/index';
+
+import RenameTaskButton from '../RenameTaskButton/RenameTaskButton';
 
 import ImageProgress from '../../assets/icons/double.svg';
 import ImageCompleted from '../../assets/icons/cancel.svg';
@@ -12,7 +13,7 @@ const statusImg = {
   pending: ImagePending,
 };
 
-function TaskItem({ task, onStatusChange, onDeleteTask, renderActions }) {
+function TaskItem({ task, onStatusChange, onDeleteTask, onTaskChange }) {
   const [renaming, setRenaming] = useState(false);
 
   const startRename = () => {
@@ -27,33 +28,39 @@ function TaskItem({ task, onStatusChange, onDeleteTask, renderActions }) {
     onStatusChange(task, status);
   };
 
+  const handleRenameTask = (newName, id) => {
+    onTaskChange(newName, id);
+    setRenaming(false);
+  };
+
   return (
     <li>
       <img src={statusImg[task.status]} alt={task.status} width={15} /> - {task.name}
       {renaming ? (
-        <div>
-          {renderActions(task)}
-        </div>
+        <RenameTaskButton task={task} onRenameTask={handleRenameTask} />
       ) : (
         <>
-          <Button
+        {task.status === 'progress' ? (<Button
+            status="completed"
+            onClick={() => changeStatus('completed')}
+            className='task-btn-complete'
+          >
+            Завершеить
+          </Button>) : (<Button
             status="progress"
             onClick={() => changeStatus('progress')}
             className='task-btn-progres'
           >
             В процессе
-          </Button>
-          <ButtonSave
-            status="completed"
-            onClick={() => changeStatus('completed')}
-            className='task-btn-complete'
-          >
-            Завершено
-          </ButtonSave>
+          </Button>)}
+          
           <Button status="rename" onClick={startRename} className='task-btn-rename'>
             Изменить 
           </Button>
-          <DeleteTaskButton onClick={handleDeleteTask} className='task-btn-delete' />
+
+          <Button status="rename" onClick={handleDeleteTask} className='task-btn-delete'>
+            Delete 
+          </Button>
         </>
       )}
     </li>

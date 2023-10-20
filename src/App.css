@@ -36,7 +36,7 @@ body {
   text-align: center;
 }
 
-Button, ButtonSave {
+Button {
   border-radius: 50px;
   margin-left: 10px;
   border: none;

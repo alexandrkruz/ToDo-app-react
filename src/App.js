@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import TaskForm from './components/TaskForm/TaskForm';
 import TaskList from './components/TaskList';
 import SearchTask from './components/SearchTask/SearchTask';
-import RenameTaskButton from './components/RenameTaskButton/RenameTaskButton';
+
 import './App.css';
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [searchText, setSearchText] = useState('');
-  const [filterText, setFilterText] = useState('');
 
   const handleTaskCreate = (taskName) => {
     const newTask = { name: taskName, status: 'progress' };
@@ -31,24 +30,8 @@ function App() {
     setSearchText(text);
   };
 
-  const handleFilterChange = (text) => {
-    setFilterText(text);
-  };
-
-  const handleRenameTask = (task, newName) => {
-    const updatedTasks = tasks.map((t) =>
-      t === task ? { ...t, name: newName } : t
-    );
-    setTasks(updatedTasks);
-  };
-
-  const renderTaskActions = (task) => (
-    <RenameTaskButton key={task.id} task={task} onRenameTask={handleRenameTask} />
-  );
-
   const filteredTasks = tasks
-    .filter((task) => task.name.toLowerCase().includes(searchText.toLowerCase()))
-    .filter((task) => task.name.toLowerCase().includes(filterText.toLowerCase()));
+    .filter((task) => task.name.toLowerCase().includes(searchText.toLowerCase()));
 
   return (
     <div className="App">
@@ -56,15 +39,16 @@ function App() {
         <div className="options">
           <h2 className="options_title">Управление задачами</h2>
           <TaskForm onTaskCreate={handleTaskCreate} />
-          <SearchTask onSearchChange={handleSearchChange} />
         </div>
+
         <div className="task_list">
-        <h2 className="list_title">Список</h2>
+        <h2 className="list_title">Список Задач</h2>
+          <SearchTask onSearchChange={handleSearchChange} />
           <TaskList
             tasks={filteredTasks}
             onStatusChange={handleStatusChange}
             onDeleteTask={handleDeleteTask}
-            renderActions={renderTaskActions}
+            updateTasks={setTasks}
           />
         </div>
       </div>
