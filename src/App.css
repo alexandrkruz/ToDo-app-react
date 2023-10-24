@@ -66,6 +66,15 @@ li {
   list-style: none;
 }
 
+.nav_link {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 16px;
+  display: block;
+}
+
 
 
 

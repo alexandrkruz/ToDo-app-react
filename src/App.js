@@ -73,9 +73,9 @@ function App() {
       <div className="App">
         <div className="container">
           <nav>
-            <Link to="/">Home</Link>
-            <Link to="/create">Create Task</Link>
-            <Link to="/view">View tasks</Link>
+            <Link to="/" className="nav_link">Home</Link>
+            <Link to="/create" className="nav_link">Create Task</Link>
+            <Link to="/view" className="nav_link">View tasks</Link>
           </nav>
           <Routes>
             <Route path="/" element={<Home />} />
