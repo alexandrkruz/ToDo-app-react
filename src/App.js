@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import TaskForm from './components/TaskForm/TaskForm';
-import TaskList from './components/TaskList';
-import SearchTask from './components/SearchTask/SearchTask';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Home from './components/Home/Home'
+import CreateTask from './components/CreateTask/CreateTask'
+import TaskListView from './components/TaskListView/TaskListView'
 
 import './App.css';
 
@@ -30,31 +31,38 @@ function App() {
     setSearchText(text);
   };
 
-  const filteredTasks = tasks
-    .filter((task) => task.name.toLowerCase().includes(searchText.toLowerCase()));
-
   return (
-    <div className="App">
-      <div className="container">
-        <div className="options">
-          <h2 className="options_title">Управление задачами</h2>
-          <TaskForm onTaskCreate={handleTaskCreate} />
-        </div>
-
-        <div className="task_list">
-        <h2 className="list_title">Список Задач</h2>
-          <SearchTask onSearchChange={handleSearchChange} />
-          <TaskList
-            tasks={filteredTasks}
-            onStatusChange={handleStatusChange}
-            onDeleteTask={handleDeleteTask}
-            updateTasks={setTasks}
-          />
+    <Router>
+      <div className="App">
+        <div className="container">
+          <nav>
+            <Link to="/" className="nav_link">Home</Link>
+            <Link to="/create" className="nav_link">Create Task</Link>
+            <Link to="/view" className="nav_link">View tasks</Link>
+          </nav>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/create"
+              element={<CreateTask handleTaskCreate={handleTaskCreate} />}
+            />
+            <Route
+              path="/view"
+              element={
+                <TaskListView tasks={tasks}
+                  handleStatusChange={handleStatusChange}
+                  handleDeleteTask={handleDeleteTask}
+                  updateTasks={setTasks}
+                  searchText={searchText}
+                  handleSearchChange={handleSearchChange}
+                />
+              }
+            />
+          </Routes>
         </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
 export default App;
-
